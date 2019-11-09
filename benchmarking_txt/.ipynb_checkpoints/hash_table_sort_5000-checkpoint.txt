@@ -1,0 +1,4 @@
+Using hash_table
+Insert time: 0.01273345947265625 secs
+Search existed key time: 0.011191129684448242 secs
+Search not existed key time: 0.015474319458007812 secs

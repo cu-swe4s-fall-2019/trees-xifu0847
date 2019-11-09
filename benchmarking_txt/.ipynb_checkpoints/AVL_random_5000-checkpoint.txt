@@ -1,0 +1,4 @@
+Using AVL
+Insert time: 0.12591791152954102 secs
+Search existed key time: 0.01729607582092285 secs
+Search not existed key time: 0.019687175750732422 secs

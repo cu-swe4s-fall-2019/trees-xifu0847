@@ -23,3 +23,9 @@ assert_in_stderr 'data_number should be in range (0, 10000]'
 
 run test_good_usage python insert_key_value_pairs.py --data_structure=AVL --dataset=sorted.txt --data_number=10000
 assert_no_stderr
+
+run test_good_usage python insert_key_value_pairs.py --data_structure=hash_table --dataset=sorted.txt --data_number=10000
+assert_no_stderr
+
+run test_good_usage python insert_key_value_pairs.py --data_structure=binary_tree --dataset=sorted.txt --data_number=10000
+assert_no_stderr
