@@ -18,9 +18,9 @@ if __name__ == '__main__':
                         help='random.txt or sorted.txt')
     parser.add_argument('--data_number', type=int, default='',
                         help='data_number > 0 and data_number <= 10000')
-   
+
     args = parser.parse_args()
-    
+
     if args.data_structure not in ['AVL', 'hash_table', 'binary_tree']:
         raise ValueError(
             'data_structure should be AVL, hash_table or binary_tree')
@@ -36,7 +36,7 @@ if __name__ == '__main__':
 
     with open(args.dataset) as file:
         data = [next(file) for x in range(args.data_number)]
-    
+
     print('Using {}'.format(args.data_structure))
     if args.data_structure == 'AVL':
         tree = AVL()
@@ -45,24 +45,24 @@ if __name__ == '__main__':
         for word in data:
             tree.insert(word)
         insert_end_time = time.time()
-        
+
         search_start_time = time.time()
         for word in data:
             tree.find(word)
         search_end_time = time.time()
-        
+
         search_not_exist_start_time = time.time()
         for word in data:
             tree.find(word + '__bad')
         search_not_exist_end_time = time.time()
-        
+
         print('Insert time: {} secs'.format(
             insert_end_time - insert_start_time))
         print('Search existed key time: {} secs'.format(
             search_end_time - search_start_time))
         print('Search not existed key time: {} secs'.format(
             search_not_exist_end_time - search_not_exist_start_time))
-        
+
     elif args.data_structure == 'hash_table':
         table = ChainedHash(10000, h_rolling)
 
@@ -70,12 +70,12 @@ if __name__ == '__main__':
         for word in data:
             table.add(word, None)
         insert_end_time = time.time()
-        
+
         search_start_time = time.time()
         for word in data:
             table.search(word)
         search_end_time = time.time()
-        
+
         search_not_exist_start_time = time.time()
         for word in data:
             table.search(word + '__bad')
@@ -88,5 +88,26 @@ if __name__ == '__main__':
         print('Search not existed key time: {} secs'.format(
             search_not_exist_end_time - search_not_exist_start_time))
     else:
-        # Do something
-        pass
+        tree = None
+
+        insert_start_time = time.time()
+        for word in data:
+            tree = binary_tree.insert(tree, word, None)
+        insert_end_time = time.time()
+
+        search_start_time = time.time()
+        for word in data:
+            res = binary_tree.search(tree, word)
+        search_end_time = time.time()
+
+        search_not_exist_start_time = time.time()
+        for word in data:
+            res = binary_tree.search(tree, word + '__bad')
+        search_not_exist_end_time = time.time()
+
+        print('Insert time: {} secs'.format(
+            insert_end_time - insert_start_time))
+        print('Search existed key time: {} secs'.format(
+            search_end_time - search_start_time))
+        print('Search not existed key time: {} secs'.format(
+            search_not_exist_end_time - search_not_exist_start_time))
