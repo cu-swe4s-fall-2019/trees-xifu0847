@@ -1,0 +1,4 @@
+Using binary_tree
+Insert time: 0.05788731575012207 secs
+Search existed key time: 0.042829036712646484 secs
+Search not existed key time: 0.0465240478515625 secs
